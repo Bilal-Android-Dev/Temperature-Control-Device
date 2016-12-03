@@ -6,8 +6,6 @@
 
 //LCD
 void LCD_Init(void);
-void PortD_Init(void);
-void GPIO_PortAB_Init(void);
 void LCD_Clear(void);
 void LCD_DisplayString(unsigned char *str);
 void LCD_DisplayChar(unsigned char CHAR);
@@ -19,13 +17,13 @@ void PLL_Init(void);
 
 //SYSTICK
 void SysTick_Init(void);
-void SysTick_Delay(unsigned long delay); //12.ns
-void SysTick_Delay1us(unsigned long delay); //1us
-void Delay1ms(unsigned long delay); //1ms
+void SysTick_Delay(unsigned long delay);
+void SysTick_Delay1us(unsigned long delay);
+void Delay1ms(unsigned long delay);
 
 //BUTTON INTERRUPT
 void PortF_Interrupt(void);
-void DisableInterrupts(void); // Disable interrupts
+void DisableInterrupts(void);
 void EnableInterrupts(void);
 void PortF_Init(void);
 

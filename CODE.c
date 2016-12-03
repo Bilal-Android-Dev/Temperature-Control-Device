@@ -6,6 +6,7 @@
 //LCD
 void GPIO_PortAB_Init(void){
     volatile unsigned long delay;
+    //Initial PA7/PA6/PA5
     SYSCTL_RCGC2_R |= 0x00000001;
     delay = SYSCTL_RCGC2_R;
     GPIO_PORTA_AMSEL_R &= ~0xE0;
@@ -14,6 +15,8 @@ void GPIO_PortAB_Init(void){
     GPIO_PORTA_AFSEL_R &= ~0xE0;
     GPIO_PORTA_DEN_R |= 0xE0;
     GPIO_PORTA_DR8R_R |= 0xE0;
+
+    //Initial PB7 ~ 0
     SYSCTL_RCGC2_R |= 0x00000002;
     delay = SYSCTL_RCGC2_R;
     GPIO_PORTB_AMSEL_R &= ~0xFF;
@@ -24,30 +27,9 @@ void GPIO_PortAB_Init(void){
     GPIO_PORTB_DR8R_R |= 0xFF;
 }
 
-
-void PortD_Init(void){
-	volatile unsigned long delay;
-	SYSCTL_RCGC2_R |= 0x00000008;
-	delay = SYSCTL_RCGC2_R;
-	GPIO_PORTD_LOCK_R = 0x4C4F434B;
-	GPIO_PORTF_CR_R = 0x0F;
-	GPIO_PORTF_AMSEL_R = 0x00;
-	GPIO_PORTF_PCTL_R = 0x00000000;
-	GPIO_PORTF_DIR_R = 0xFF;
-	GPIO_PORTF_AFSEL_R = 0x00;
-	GPIO_PORTB_DR8R_R |= 0xFF;
-	GPIO_PORTF_DEN_R = 0xFF;
-}
-
-
 void Write_Command(unsigned char LCD_Comment){
- 
-		GPIO_PORTA_DATA_R &= ~(RS+RW+E);
+    GPIO_PORTA_DATA_R &= ~(RS+RW+E);
     GPIO_PORTB_DATA_R = LCD_Comment;
-	
-		
-	
-		GPIO_PORTD_DATA_R = (LCD_Comment & 0xCC);
     GPIO_PORTA_DATA_R |= E;
     GPIO_PORTA_DATA_R &= ~(RS+RW);
     SysTick_Delay(19);
@@ -56,13 +38,8 @@ void Write_Command(unsigned char LCD_Comment){
 }
 
 void Write_Data(unsigned char LCD_Data){
-		
-	
     GPIO_PORTB_DATA_R = LCD_Data;
-	
-
-    
-		GPIO_PORTA_DATA_R |= RS+E;
+    GPIO_PORTA_DATA_R |= RS+E;
     GPIO_PORTA_DATA_R &= ~RW;
     SysTick_Delay(19);
     GPIO_PORTA_DATA_R &= ~(RS+RW+E);
@@ -71,7 +48,6 @@ void Write_Data(unsigned char LCD_Data){
 
 void LCD_Init(){
     GPIO_PortAB_Init();
-		PortD_Init();
     Delay1ms(15);
     Write_Command(0x38);
     Delay1ms(5);
@@ -86,6 +62,7 @@ void LCD_Init(){
 void LCD_Clear(){
     Write_Command(0x01);
 }
+
 
 void LCD_DisplayString(unsigned char *str){
     while(*str != 0){
@@ -119,7 +96,6 @@ int fputc(int ch, FILE *f){
     LCD_DisplayChar(ch);
     return 1;
 }
-
 
 //END LCD
 
@@ -247,8 +223,8 @@ void PortF_Interrupt(void){
 	GPIO_PORTF_IS_R &= ~0x11;   // Sw1 and Sw2 0x11 = 10001 is edge-sensitive (default setting)
 	GPIO_PORTF_IBE_R &= ~0x11;  // Is not both edges (default setting)
 	GPIO_PORTF_IEV_R &= ~0x11;;   // Rising edge event
-  GPIO_PORTF_ICR_R = 0x11;    // clear flag4
-  GPIO_PORTF_IM_R |= 0x11;    // enable interrupt
+	GPIO_PORTF_ICR_R = 0x11;    // clear flag4
+	GPIO_PORTF_IM_R |= 0x11;    // enable interrupt
 	NVIC_PRI7_R = (NVIC_PRI7_R & 0xFF00FFFF) | 0x00200000;
 	NVIC_EN0_R = 0x40000000;
 	EnableInterrupts();
@@ -258,12 +234,12 @@ void PortF_Interrupt(void){
 
 //TEST and DRIVE
 int Test(unsigned int user, unsigned int adc){
-		if(user <= adc){
+	if(user <= adc){
 		return 1;
-		}
-		else{
+	}
+	else{
 		return 0;
-		}
+	}
 }
 void TestS(unsigned int user, unsigned int adc){
 	if(user <= adc){
@@ -322,10 +298,10 @@ void Drive(int Current_State, int Pre_State){
 int GetState(int Adc_Value, int User_Value){
 	Adc_Value = ADC_Data();
 	if(User_Value <= Adc_Value){
-	return 1;
+		return 1;
 	}
 	else{
-	return 0;
+		return 0;
 	}
 }
 
@@ -340,16 +316,16 @@ void Init_Intro(void){
 	LCD_Init();
 	Delay1ms(10);
 	ADC_Init();
-	
+
 	Delay1ms(10);
 	LCD_DisplayPosition(LINE1,0);
-	printf("ELECTRICAL ENGG.");
+	printf("ELECTRICAL ENGG");
 	Delay1ms(1000);
 	LCD_DisplayPosition(LINE2,5);
 	printf("EE371");
 	Delay1ms(2000);
 	LCD_Clear();
-	
+
 	Delay1ms(10);
 	LCD_DisplayPosition(LINE1,1);
 	printf("MICROPROCESSOR");
@@ -391,7 +367,7 @@ void Init_Intro(void){
 	printf("To: Sir ");
 	Delay1ms(1000);
 	LCD_DisplayPosition(LINE2,2);
-	printf("M. FAHAD IJAZ");
+	printf("M FAHAD IJAZ");
 	Delay1ms(2000);
 	LCD_Clear();
 	Delay1ms(10);

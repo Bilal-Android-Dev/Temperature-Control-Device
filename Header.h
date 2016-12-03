@@ -12,22 +12,30 @@ void LCD_DisplayChar(unsigned char CHAR);
 void LCD_DisplayDec(unsigned int number);
 void LCD_DisplayPosition(unsigned char Line, unsigned int digit);
 
-
+//PLL
 void PLL_Init(void);
 
-
+//SYSTICK
 void SysTick_Init(void);
-void SysTick_Delay(unsigned long delay); //12.ns
-void SysTick_Delay1us(unsigned long delay); //1us
-void SysTick_Delay1ms(unsigned long delay); //1ms
+void SysTick_Delay(unsigned long delay);
+void SysTick_Delay1us(unsigned long delay);
+void Delay1ms(unsigned long delay);
 
-
+//BUTTON INTERRUPT
 void PortF_Interrupt(void);
-void DisableInterrupts(void); // Disable interrupts
+void DisableInterrupts(void);
 void EnableInterrupts(void);
 void PortF_Init(void);
 
+//ADC
 unsigned int ADC_Data(void);
 void ADC_Init(void);
+int ADC_Value(void);
 
-void Test(unsigned int user, unsigned int adc);
+//TEST AND DRIVE
+void Init_Intro(void);
+int Test(unsigned int user, unsigned int adc);
+int GetState(int Adc_Value, int User_Value);
+void Drive(int Current_State, int Pre_State);
+void TestS(unsigned int user, unsigned int adc);
+void Repeat_Display(void);

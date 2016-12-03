@@ -10,7 +10,7 @@ int main(void){
 	Adc_Value = ADC_Value();
 	Pre_State = GetState(Adc_Value, User_Value);
 	TestS(User_Value, Adc_Value);
-			
+
 	while(1){
 		Adc_Value = ADC_Value();
 		Current_State = Test(User_Value, Adc_Value);
@@ -42,8 +42,13 @@ void Repeat_Display(void){
 	LCD_DisplayPosition(LINE1,0); 
 	printf("NOW TEMP is %d C",Adc_Value);
 	Delay1ms(10);
-	LCD_DisplayPosition(LINE2,1); 
-	printf("USER SET %d C",User_Value);
+	LCD_DisplayPosition(LINE2,0);
+	if(Current_State == 1){
+		printf("USER %d C FAN-ON",User_Value);
+	}
+	else{
+		printf("USER %dC FAN-OFF",User_Value);
+	}
 	Delay1ms(3000);
 	LCD_Clear();
 	Delay1ms(3);

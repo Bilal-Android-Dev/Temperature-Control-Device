@@ -301,6 +301,14 @@ int GetState(int Adc_Value, int User_Value){
 }
 
 void Init_Intro(void){
+	PLL_Init();
+	SysTick_Init();
+	PortF_Init();
+	PortF_Interrupt();
+	LCD_Init();
+	Delay1ms(10);
+	ADC_Init();
+	Delay1ms(10);
 	
 	LCD_DisplayPosition(LINE1,0);
 	printf("ELECTRICAL ENGG.");

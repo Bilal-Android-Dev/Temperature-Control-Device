@@ -1,8 +1,8 @@
-#define LINE1 0x80 //First Line of LCD
-#define LINE2 0xC0 //Second Line of LCD
-#define RW 0x20  //PA5
-#define RS 0x40  //PA6 
-#define E  0x80  //PA7
+#define LINE1 0x80
+#define LINE2 0xC0
+#define RW 0x20
+#define RS 0x40
+#define E 0x80
 
 //LCD
 void LCD_Init(void);

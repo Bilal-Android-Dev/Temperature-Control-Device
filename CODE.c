@@ -60,25 +60,10 @@ void LCD_Clear(){
 	Write_Command(0x01);
 }
 
-
-void LCD_DisplayString(unsigned char *str){
-	while (*str != 0){
-		Write_Data(*str++);
-	}
-}
-
 void LCD_DisplayChar(unsigned char CHAR){
 	Write_Data(CHAR);
 }
 
-void LCD_DisplayDec(unsigned int number){
-	if (number >= 10){
-		LCD_DisplayDec(number / 10);
-		number = number % 10;
-
-	}
-	LCD_DisplayChar(number + '0');
-}
 
 void LCD_DisplayPosition(unsigned char Line, unsigned int digit){
 	Write_Command(Line + digit);
@@ -177,7 +162,7 @@ unsigned int ADC_Data(void){
 int ADC_Value(void){
 	int result, div = 0;
 	result = ADC_Data();
-	div = (result * 10000) / 140000;
+	div = (result * 10000) / 140;
 	return div;
 }
 //ADC END
@@ -330,11 +315,11 @@ void Init_Intro(void){
 	LCD_Clear();
 
 	Delay1ms(10);
-	LCD_DisplayPosition(LINE1, 2);
-	printf("MOIN AKHTAR");
+	LCD_DisplayPosition(LINE1, 0);
+	printf("MOIN AKHTAR 357");
 	Delay1ms(1000);
-	LCD_DisplayPosition(LINE2, 3);
-	printf("UMER ALYAN");
+	LCD_DisplayPosition(LINE2, 1);
+	printf("UMER ALYAN 311");
 	Delay1ms(1000);
 	LCD_Clear();
 

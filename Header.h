@@ -14,7 +14,7 @@ void LCD_DisplayPosition(unsigned char Line, unsigned int digit);
 void PLL_Init(void);
 
 //SYSTICK
-voidSysTick_Init(void);
+void SysTick_Init(void);
 void SysTick_Delay(unsigned long delay);
 void SysTick_Delay1us(unsigned long delay);
 void Delay1ms(unsigned long delay);

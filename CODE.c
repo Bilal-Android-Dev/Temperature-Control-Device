@@ -177,7 +177,7 @@ unsigned int ADC_Data(void){
 int ADC_Value(void){
 	int result, div = 0;
 	result = ADC_Data();
-	div = (result * 10000) / 124121;
+	div = (result * 10000) / 140000;
 	return div;
 }
 //ADC END

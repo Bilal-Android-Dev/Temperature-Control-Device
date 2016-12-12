@@ -7,9 +7,7 @@
 //LCD
 void LCD_Init(void);
 void LCD_Clear(void);
-void LCD_DisplayString(unsigned char *str);
 void LCD_DisplayChar(unsigned char CHAR);
-void LCD_DisplayDec(unsigned int number);
 void LCD_DisplayPosition(unsigned char Line, unsigned int digit);
 
 //PLL

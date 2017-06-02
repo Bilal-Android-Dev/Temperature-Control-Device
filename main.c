@@ -53,3 +53,4 @@ void Repeat_Display(void){
 	LCD_Clear();
 	Delay1ms(3);
 }
+

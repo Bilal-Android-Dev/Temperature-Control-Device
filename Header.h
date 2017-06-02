@@ -37,3 +37,5 @@ int GetState(int Adc_Value, int User_Value);
 void Drive(int Current_State, int Pre_State);
 void TestS(unsigned int user, unsigned int adc);
 void Repeat_Display(void);
+
+

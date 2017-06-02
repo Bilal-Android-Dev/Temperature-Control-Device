@@ -279,17 +279,18 @@ void Init_Intro(void){
 	ADC_Init();
 	Delay1ms(10);
 
+
 	LCD_DisplayPosition(LINE1, 0);
 	printf("ELECTRICAL ENGG.");
 	Delay1ms(1000);
 	LCD_DisplayPosition(LINE2, 5);
-	printf("EE371");
+	printf("EE340");
 	Delay1ms(2000);
 	LCD_Clear();
 
 	Delay1ms(10);
-	LCD_DisplayPosition(LINE1, 1);
-	printf("MICROPROCESSOR");
+	LCD_DisplayPosition(LINE1, 0);
+	printf("CONTROL SYSTEMS");
 	Delay1ms(1000);
 	LCD_DisplayPosition(LINE2, 4);
 	printf("PROJECT");
@@ -300,8 +301,17 @@ void Init_Intro(void){
 	LCD_DisplayPosition(LINE1, 2);
 	printf("TEMPERATURE");
 	Delay1ms(1000);
-	LCD_DisplayPosition(LINE2, 1);
+	LCD_DisplayPosition(LINE2, 0);
 	printf("CTRL FAN/DEVICE");
+	Delay1ms(2000);
+	LCD_Clear();
+	
+	Delay1ms(10);
+	LCD_DisplayPosition(LINE1, 0);
+	printf("& Speed Control");
+	Delay1ms(1000);
+	LCD_DisplayPosition(LINE2, 2);
+	printf(" OF DC Motor");
 	Delay1ms(2000);
 	LCD_Clear();
 
@@ -315,22 +325,21 @@ void Init_Intro(void){
 	LCD_Clear();
 
 	Delay1ms(10);
-	LCD_DisplayPosition(LINE1, 0);
-	printf("MOIN AKHTAR 357");
+	LCD_DisplayPosition(LINE1, 2);
+	printf("MOIN AKHTAR");
 	Delay1ms(1000);
-	LCD_DisplayPosition(LINE2, 1);
-	printf("UMER ALYAN 311");
-	Delay1ms(1000);
+	LCD_DisplayPosition(LINE2, 2);
+	printf("2014-EE-357");
+	Delay1ms(2000);
 	LCD_Clear();
 
 	Delay1ms(10);
 	LCD_DisplayPosition(LINE1, 0);
 	printf("To: Sir ");
 	Delay1ms(1000);
-	LCD_DisplayPosition(LINE2, 2);
-	printf("M. FAHAD IJAZ");
+	LCD_DisplayPosition(LINE2, 1);
+	printf("RAFAY CHUGHTAI");
 	Delay1ms(2000);
 	LCD_Clear();
-	Delay1ms(10);
-}
+	Delay1ms(10);}
 //END TEST and DRIVE
